@@ -1,0 +1,25 @@
+---
+import BlueprintFrame from "./BlueprintFrame.astro";
+import type { Product } from "../data/site";
+
+interface Props {
+  product: Product;
+}
+
+const { product } = Astro.props;
+---
+
+<BlueprintFrame class="product-card">
+  <div class="product-photo">
+    {
+      product.photo ? (
+        <img src={product.photo} alt={product.name} loading="lazy" />
+      ) : (
+        <span class="product-photo-placeholder">Foto del producto</span>
+      )
+    }
+  </div>
+  <h3 class="product-name">{product.name}</h3>
+  <p class="product-blurb">{product.blurb}</p>
+  <a href="#contacto" class="btn btn-ghost">Consultar</a>
+</BlueprintFrame>

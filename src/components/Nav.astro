@@ -1,0 +1,26 @@
+---
+import { whatsappLink } from "../data/site";
+---
+
+<nav class="site-nav">
+  <a href="#inicio" class="site-nav-brand" aria-label="Plásticos Universal — inicio">
+    <img src="/uploads/pasted-1786314135121-0.png" alt="Plásticos Universal" />
+  </a>
+  <div style="display:flex;align-items:center;gap:20px">
+    <div class="site-nav-links">
+      <a href="#inicio">Inicio</a>
+      <a href="#nosotros">Nosotros</a>
+      <a href="#productos">Productos</a>
+      <a href="#contacto">Contacto</a>
+    </div>
+    <a
+      href={whatsappLink}
+      target="_blank"
+      rel="noopener"
+      class="btn btn-primary"
+      style="text-decoration:none;height:38px;transform:translateY(-2px)"
+    >
+      WhatsApp
+    </a>
+  </div>
+</nav>

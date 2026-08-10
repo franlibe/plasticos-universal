@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://www.plasticouniversal.com.ar/sitemap-index.xml

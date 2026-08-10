@@ -1,0 +1,21 @@
+---
+interface Props {
+  class?: string;
+  style?: string;
+  corners?: boolean;
+}
+
+const { class: className = "", style, corners = false } = Astro.props;
+---
+
+<div class:list={["blueprint", className]} style={style}>
+  {corners && (
+    <>
+      <i class="corner tl"></i>
+      <i class="corner tr"></i>
+      <i class="corner bl"></i>
+      <i class="corner br"></i>
+    </>
+  )}
+  <slot />
+</div>

@@ -1,0 +1,223 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Nav from "../components/Nav.astro";
+import BlueprintFrame from "../components/BlueprintFrame.astro";
+import ProductCard from "../components/ProductCard.astro";
+import { site, whatsappLink, products, clientes } from "../data/site";
+
+const heroLine1 = ["Tanques", "y", "piezas", "en", "PRFV"];
+const heroLine2 = ["que", "resisten", "donde", "otros", "ceden."];
+const marqueeClientes = [...clientes, ...clientes];
+---
+
+<Layout title="Plásticos Universal — Tanques y piezas en PRFV">
+  <Nav />
+
+  <section id="inicio" class="hero">
+    <div>
+      <span class="section-eyebrow hero-kicker">Tecnología PRFV</span>
+      <hr class="section-rule" />
+      <h1 class="hero-title">
+        <span class="hero-title-line">
+          {heroLine1.map((word, i) => (
+            <span style={`animation-delay:${(i * 0.06).toFixed(2)}s`}>{word}</span>
+          ))}
+        </span>
+        <span class="hero-title-line accent">
+          {heroLine2.map((word, i) => (
+            <span style={`animation-delay:${(0.34 + i * 0.06).toFixed(2)}s`}>{word}</span>
+          ))}
+        </span>
+      </h1>
+      <p class="hero-lead">
+        Diseñamos, desarrollamos y fabricamos tanques, autopartes y agropartes en PRFV para la
+        industria y el campo, con tecnología de punta y asesoramiento técnico en cada proyecto.
+      </p>
+      <div class="hero-actions">
+        <a href="#productos" class="btn btn-primary" style="text-decoration:none">Ver catálogo de productos</a>
+        <a href={whatsappLink} target="_blank" rel="noopener" class="btn btn-ghost" style="text-decoration:none">
+          Hablar por WhatsApp
+        </a>
+      </div>
+    </div>
+    <BlueprintFrame class="hero-visual">
+      <div class="hero-visual-stage">
+        <div class="hero-visual-backdrop"></div>
+        <div class="hero-visual-photo" style="background-image:url(/uploads/pasted-1786312461609-0.png)"></div>
+        <div class="hero-visual-shine"></div>
+      </div>
+    </BlueprintFrame>
+  </section>
+
+  <section class="section">
+    <BlueprintFrame class="techsheet">
+      <header class="techsheet-header">
+        <span>Plásticos Universal — ficha técnica</span>
+        <span>PU-01</span>
+        <span>Hoja 01 de 01</span>
+      </header>
+      <div class="techsheet-table-wrap">
+        <table class="table techsheet-table">
+          <colgroup>
+            <col style="width:calc(3*var(--leading))" />
+            <col style="width:26%" />
+            <col style="width:24%" />
+            <col />
+          </colgroup>
+          <thead>
+            <tr>
+              <th scope="col">N.º</th>
+              <th scope="col">Propiedad</th>
+              <th scope="col">Valor</th>
+              <th scope="col">Observación</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>01</td>
+              <td>Material</td>
+              <td class="value">PRFV</td>
+              <td class="note">Resistente a la corrosión y la intemperie</td>
+            </tr>
+            <tr>
+              <td>02</td>
+              <td>Fabricación</td>
+              <td class="value">A medida</td>
+              <td class="note">Diseño y cálculo según cada proyecto</td>
+            </tr>
+            <tr>
+              <td>03</td>
+              <td>Sectores</td>
+              <td class="value">Industria y campo</td>
+              <td class="note">Automotriz, agro, tratamiento de efluentes</td>
+            </tr>
+            <tr>
+              <td>04</td>
+              <td>Garantía</td>
+              <td class="value">Respaldo técnico</td>
+              <td class="note">Asesoramos antes, durante y después de la obra</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </BlueprintFrame>
+  </section>
+
+  <section id="productos" class="section">
+    <span class="section-eyebrow">02 · Catálogo de productos</span>
+    <hr class="section-rule" />
+    <h2 class="section-heading">Fabricamos tanques, autopartes y agropartes</h2>
+    <div class="product-grid">
+      {products.map((product) => (
+        <ProductCard product={product} />
+      ))}
+    </div>
+  </section>
+
+  <section id="nosotros" class="about split-grid">
+    <div>
+      <span class="section-eyebrow">03 · Nosotros</span>
+      <hr class="section-rule" />
+      <h2>Diseñamos, desarrollamos y fabricamos en PRFV</h2>
+      <p>
+        Plásticos Universal es una empresa familiar que se inició en el año 1985 con la
+        fabricación de agropartes, y luego se volcó a la fabricación de tanques cilíndricos
+        verticales y horizontales. En el año 2003 se fabricó una máquina de Filament Winding
+        (bobinado de filamento) y se comenzó a fabricar tanques de mayor porte.
+      </p>
+      <ul class="about-list">
+        <li>
+          En el año 2008 se empezó a incursionar con el tratamiento de efluentes y de allí se
+          está abocando en un 60% a la fabricación de plantas de tratamiento de efluentes
+          cloacales e industriales y separadores de hidrocarburos y emulsionados.
+        </li>
+        <li>
+          Poseemos un equipo de ingeniería de primera línea para cualquier tipo de consulta;
+          diseñamos y desarrollamos cualquier tipo de piezas en P.R.F.V.
+        </li>
+      </ul>
+    </div>
+    <div class="about-photo">
+      <BlueprintFrame>
+        <img src="/uploads/img-nosotros.png" alt="Productos Plásticos Universal: tanques y planta de tratamiento" />
+      </BlueprintFrame>
+    </div>
+  </section>
+
+  <section class="section">
+    <span class="section-eyebrow">04 · Empresas que confían en nosotros</span>
+    <hr class="section-rule" style="margin-bottom:var(--leading)" />
+    <div class="marquee-viewport">
+      <div class="marquee-track">
+        {marqueeClientes.map((cliente) => (
+          <BlueprintFrame class="client-logo">
+            <img src={cliente.logo} alt={cliente.name} loading="lazy" />
+          </BlueprintFrame>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section id="contacto" class="contact">
+    <div class="contact-hero">
+      <span class="section-eyebrow">05 · Contacto</span>
+      <hr class="section-rule" />
+      <h2 class="section-heading">¿Necesita algo a medida?</h2>
+      <p>
+        Cada tanque, autoparte o agroparte se calcula y desarrolla a medida del proyecto:
+        acompañamos al cliente desde el diseño y el cálculo estructural hasta la fabricación y la
+        puesta en servicio, con un control técnico riguroso en cada etapa. Si tiene una necesidad
+        no cubierta por el mercado, lo asesoramos, diseñamos y construimos la solución.
+      </p>
+      <div class="contact-actions">
+        <a href={whatsappLink} target="_blank" rel="noopener" class="btn btn-primary" style="text-decoration:none">
+          Escribir por WhatsApp
+        </a>
+        <a href={`mailto:${site.email}`} class="btn btn-ghost" style="text-decoration:none">{site.email}</a>
+        <a href={site.phoneHref} class="phone">{site.phoneDisplay}</a>
+      </div>
+    </div>
+
+    <div class="contact-footer">
+      <div class="split-grid contact-details">
+        <div>
+          <span class="section-eyebrow">Nuestra planta</span>
+          <p>{site.address}</p>
+          <div class="social-links">
+            <a href="http://facebook.com/" target="_blank" rel="noopener" aria-label="Facebook" class="btn btn-icon">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3.5l.5-4H15V7a1 1 0 0 1 1-1h2z"></path>
+              </svg>
+            </a>
+            <a href="http://instagram.com/" target="_blank" rel="noopener" aria-label="Instagram" class="btn btn-icon">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+                <circle cx="12" cy="12" r="4"></circle>
+                <circle cx="17.2" cy="6.8" r="0.6" fill="currentColor" stroke="none"></circle>
+              </svg>
+            </a>
+            <a href={whatsappLink} target="_blank" rel="noopener" aria-label="WhatsApp" class="btn btn-icon">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M12 3a9 9 0 0 0-7.75 13.6L3 21l4.55-1.2A9 9 0 1 0 12 3z"></path>
+                <path d="M8.5 8.8c.3-.6.7-.6 1-.6.3 0 .5.1.7.5.2.4.6 1.4.6 1.5.1.1.1.3 0 .4-.4.7-.9 1-.6 1.5.7 1.1 1.3 1.6 2.3 2.1.2.1.3.1.5-.1.2-.2.7-.8.9-1.1.2-.2.3-.2.6-.1.2.1 1.5.7 1.7.8.2.1.3.2.4.3 0 .2 0 .9-.3 1.4-.3.5-1.5 1-2.1 1-1.4 0-2.9-.7-4-1.8-1.2-1.1-1.9-2.5-2-2.7-.1-.2-.9-1.4-.9-2.6 0-1.2.6-1.8.8-2.1z"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+        <div class="map-frame">
+          <BlueprintFrame>
+            <iframe
+              src={site.mapEmbed}
+              loading="lazy"
+              title="Ubicación Plásticos Universal"
+            ></iframe>
+          </BlueprintFrame>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <span>© 2026 {site.name} — {site.tagline}</span>
+  </footer>
+</Layout>
