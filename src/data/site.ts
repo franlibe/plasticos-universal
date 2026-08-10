@@ -12,6 +12,17 @@ export const site = {
 
 export const whatsappLink = `https://api.whatsapp.com/send?phone=${site.whatsappNumber}`;
 
+export interface Stat {
+  value: string;
+  label: string;
+}
+
+export const stats: Stat[] = [
+  { value: "+50", label: "Clientes satisfechos" },
+  { value: "+500", label: "Productos entregados" },
+  { value: "40+", label: "Años de experiencia" },
+];
+
 export interface Product {
   name: string;
   blurb: string;

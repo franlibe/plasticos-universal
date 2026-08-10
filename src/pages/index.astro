@@ -3,7 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import Nav from "../components/Nav.astro";
 import BlueprintFrame from "../components/BlueprintFrame.astro";
 import ProductCard from "../components/ProductCard.astro";
-import { site, whatsappLink, products, clientes } from "../data/site";
+import { site, whatsappLink, products, clientes, stats } from "../data/site";
 
 const heroLine1 = ["Tanques", "y", "piezas", "en", "PRFV"];
 const heroLine2 = ["que", "resisten", "donde", "otros", "ceden."];
@@ -156,6 +156,15 @@ const marqueeClientes = [...clientes, ...clientes];
         ))}
       </div>
     </div>
+
+    <div class="stats-grid">
+      {stats.map((stat) => (
+        <BlueprintFrame class="stat-card">
+          <span class="stat-value">{stat.value}</span>
+          <span class="stat-label">{stat.label}</span>
+        </BlueprintFrame>
+      ))}
+    </div>
   </section>
 
   <section id="contacto" class="contact">
@@ -220,4 +229,23 @@ const marqueeClientes = [...clientes, ...clientes];
   <footer class="site-footer">
     <span>© 2026 {site.name} — {site.tagline}</span>
   </footer>
+
+  <script>
+    const statCards = document.querySelectorAll(".stat-card");
+
+    if (statCards.length && "IntersectionObserver" in window) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            entry.target.classList.toggle("is-visible", entry.isIntersecting);
+          }
+        },
+        { threshold: 0.15 }
+      );
+
+      for (const card of statCards) observer.observe(card);
+    } else {
+      for (const card of statCards) card.classList.add("is-visible");
+    }
+  </script>
 </Layout>

@@ -54,7 +54,7 @@ a:hover {
   z-index: 50;
 }
 .site-nav-brand img {
-  height: 38px;
+  height: 52px;
   width: auto;
 }
 .site-nav-links {
@@ -77,7 +77,7 @@ a:hover {
 
 /* — hero — */
 .hero {
-  padding: calc(72px + 4 * var(--leading)) var(--edge) calc(3 * var(--leading));
+  padding: calc(88px + 4 * var(--leading)) var(--edge) calc(3 * var(--leading));
   display: grid;
   grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
   gap: var(--leading) clamp(24px, 5vw, 80px);
@@ -350,6 +350,47 @@ a:hover {
   object-fit: contain;
 }
 
+/* — trayectoria stats — */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: calc(3 * var(--leading));
+}
+.stat-card {
+  padding: calc(2 * var(--leading)) var(--leading);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  text-align: center;
+  opacity: 0;
+  transform: scale(0.5);
+  transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.stat-card.is-visible {
+  opacity: 1;
+  transform: scale(1);
+}
+.stat-card:nth-child(2) {
+  transition-delay: 0.18s;
+}
+.stat-card:nth-child(3) {
+  transition-delay: 0.36s;
+}
+.stat-value {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: clamp(32px, 4vw, 48px);
+  line-height: 1;
+  color: var(--color-accent-700);
+}
+.stat-label {
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--color-text) 70%, transparent);
+}
 /* — clients marquee — */
 .marquee-viewport {
   position: relative;
@@ -513,10 +554,12 @@ a:hover {
 @media (prefers-reduced-motion: reduce) {
   .hero-visual-photo,
   .hero-visual-shine,
-  .marquee-track {
+  .marquee-track,
+  .stat-card {
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;
+    transition: none !important;
   }
 }
 
@@ -526,6 +569,9 @@ a:hover {
   }
   .hero,
   .split-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .stats-grid {
     grid-template-columns: 1fr !important;
   }
   .hero-visual {
