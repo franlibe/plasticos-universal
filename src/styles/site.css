@@ -577,4 +577,42 @@ a:hover {
   .hero-visual {
     margin-top: 8px;
   }
+
+  /* — techsheet: rows become stacked cards instead of a side-scrolling table — */
+  .techsheet-table {
+    min-width: 0;
+  }
+  .techsheet-table,
+  .techsheet-table thead,
+  .techsheet-table tbody,
+  .techsheet-table tr,
+  .techsheet-table td {
+    display: block;
+    width: 100%;
+  }
+  .techsheet-table thead {
+    display: none;
+  }
+  .techsheet-table tr {
+    padding: var(--half) var(--leading);
+    border-bottom: 1px solid var(--color-divider);
+  }
+  .techsheet-table tr:last-child {
+    border-bottom: 0;
+  }
+  .techsheet-table td {
+    padding: 3px 0;
+    border: 0;
+  }
+  .techsheet-table td[data-label="N.º"] {
+    display: none;
+  }
+  .techsheet-table td::before {
+    content: attr(data-label);
+    display: block;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: color-mix(in srgb, var(--color-text) 60%, transparent);
+  }
 }
