@@ -7,9 +7,19 @@ interface Props {
 }
 
 const { product } = Astro.props;
+const dialogId = `product-dialog-${product.img}`;
+const details = product.details;
+const gallery = details?.gallery ?? [];
 ---
 
-<BlueprintFrame class="product-card">
+<BlueprintFrame class={["product-card", product.featured && "is-featured"]}>
+  {product.featured && (
+    <span class="product-featured-badge" title="Producto principal" aria-label="Producto principal">
+      <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" stroke="none">
+        <path d="M12 2.5l2.77 5.61 6.19.9-4.48 4.37 1.06 6.17L12 16.6l-5.54 2.95 1.06-6.17-4.48-4.37 6.19-.9L12 2.5z"></path>
+      </svg>
+    </span>
+  )}
   <div class="product-photo">
     {
       product.photo ? (
@@ -21,5 +31,68 @@ const { product } = Astro.props;
   </div>
   <h3 class="product-name">{product.name}</h3>
   <p class="product-blurb">{product.blurb}</p>
-  <a href="#contacto" class="btn btn-ghost">Consultar</a>
+  <div class="product-actions">
+    <a href="#contacto" class="btn btn-ghost">Consultar</a>
+    {details && (
+      <button type="button" class="btn btn-secondary" data-open-dialog={dialogId}>
+        Ver más
+      </button>
+    )}
+  </div>
 </BlueprintFrame>
+
+{details && (
+  <dialog id={dialogId} class="product-dialog" aria-labelledby={`${dialogId}-title`}>
+    <BlueprintFrame class="product-dialog-inner">
+      <button type="button" class="dialog-close" data-close-dialog aria-label="Cerrar">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+          <line x1="5" y1="5" x2="19" y2="19"></line>
+          <line x1="19" y1="5" x2="5" y2="19"></line>
+        </svg>
+      </button>
+      <h4 class="dialog-title" id={`${dialogId}-title`}>{product.name}</h4>
+      {gallery.length > 0 && (
+        <div class="product-gallery">
+          <div class="product-gallery-track">
+            {gallery.map((src, i) => (
+              <img src={src} alt={`${product.name} — foto ${i + 1} de ${gallery.length}`} loading="lazy" />
+            ))}
+          </div>
+          {gallery.length > 1 && (
+            <>
+              <button type="button" class="gallery-nav prev" data-gallery-prev aria-label="Foto anterior">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
+              </button>
+              <button type="button" class="gallery-nav next" data-gallery-next aria-label="Foto siguiente">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+              </button>
+            </>
+          )}
+        </div>
+      )}
+      <div class="dialog-body">
+        <p>{details.description}</p>
+        {details.specs && (
+          <dl class="product-specs">
+            {details.specs.map((spec) => (
+              <>
+                <dt>{spec.label}</dt>
+                <dd>{spec.value}</dd>
+              </>
+            ))}
+          </dl>
+        )}
+      </div>
+      <div class="dialog-actions">
+        <button type="button" class="btn btn-secondary" data-close-dialog>Cerrar</button>
+        <a href="#contacto" class="btn btn-primary" data-close-dialog style="text-decoration:none">
+          Consultar este producto
+        </a>
+      </div>
+    </BlueprintFrame>
+  </dialog>
+)}

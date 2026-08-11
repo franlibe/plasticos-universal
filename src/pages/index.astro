@@ -247,5 +247,59 @@ const marqueeClientes = [...clientes, ...clientes];
     } else {
       for (const card of statCards) card.classList.add("is-visible");
     }
+
+    function updateGalleryNav(track: HTMLElement) {
+      const gallery = track.closest(".product-gallery");
+      const prev = gallery?.querySelector<HTMLElement>("[data-gallery-prev]");
+      const next = gallery?.querySelector<HTMLElement>("[data-gallery-next]");
+      const maxScroll = track.scrollWidth - track.clientWidth;
+      prev?.classList.toggle("is-hidden", track.scrollLeft <= 4);
+      next?.classList.toggle("is-hidden", track.scrollLeft >= maxScroll - 4);
+    }
+
+    for (const track of document.querySelectorAll<HTMLElement>(".product-gallery-track")) {
+      track.addEventListener("scroll", () => updateGalleryNav(track), { passive: true });
+    }
+
+    document.addEventListener("click", (event) => {
+      const target = event.target as HTMLElement;
+
+      const opener = target.closest<HTMLElement>("[data-open-dialog]");
+      if (opener) {
+        const dialog = document.getElementById(opener.dataset.openDialog ?? "");
+        if (dialog instanceof HTMLDialogElement) {
+          dialog.showModal();
+          const track = dialog.querySelector<HTMLElement>(".product-gallery-track");
+          if (track) {
+            track.scrollLeft = 0;
+            updateGalleryNav(track);
+          }
+        }
+        return;
+      }
+
+      const closer = target.closest<HTMLElement>("[data-close-dialog]");
+      if (closer) {
+        closer.closest("dialog")?.close();
+        return;
+      }
+
+      const galleryButton = target.closest<HTMLElement>("[data-gallery-prev], [data-gallery-next]");
+      if (galleryButton) {
+        const track = galleryButton
+          .closest(".product-gallery")
+          ?.querySelector<HTMLElement>(".product-gallery-track");
+        if (track) {
+          const direction = galleryButton.hasAttribute("data-gallery-prev") ? -1 : 1;
+          track.scrollBy({ left: direction * track.clientWidth, behavior: "smooth" });
+        }
+      }
+    });
+
+    for (const dialog of document.querySelectorAll("dialog.product-dialog")) {
+      dialog.addEventListener("click", (event) => {
+        if (event.target === dialog) (dialog as HTMLDialogElement).close();
+      });
+    }
   </script>
 </Layout>

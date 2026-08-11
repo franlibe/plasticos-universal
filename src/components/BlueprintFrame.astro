@@ -1,6 +1,8 @@
 ---
+type ClassValue = string | boolean | undefined | null;
+
 interface Props {
-  class?: string;
+  class?: ClassValue | ClassValue[];
   style?: string;
   corners?: boolean;
 }
