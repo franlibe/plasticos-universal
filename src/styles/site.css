@@ -730,6 +730,26 @@ a:hover {
     margin-top: 8px;
   }
 
+  /* — product dialog: less padding, specs stack instead of squeezing side-by-side — */
+  .product-dialog-inner {
+    padding: calc(1.25 * var(--leading));
+  }
+  .product-specs {
+    display: block;
+  }
+  .product-specs dt {
+    display: block;
+    white-space: normal;
+    margin-top: 12px;
+  }
+  .product-specs dt:first-child {
+    margin-top: 0;
+  }
+  .product-specs dd {
+    display: block;
+    margin: 2px 0 0;
+  }
+
   /* — techsheet: rows become stacked cards instead of a side-scrolling table — */
   .techsheet-table {
     min-width: 0;
