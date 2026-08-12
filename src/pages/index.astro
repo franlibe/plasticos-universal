@@ -3,7 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import Nav from "../components/Nav.astro";
 import BlueprintFrame from "../components/BlueprintFrame.astro";
 import ProductCard from "../components/ProductCard.astro";
-import { site, whatsappLink, products, clientes, stats } from "../data/site";
+import { site, whatsappLink, products, clientes, stats, reviews, googleReviewsUrl } from "../data/site";
 
 const heroLine1 = ["Tanques", "y", "piezas", "en", "PRFV"];
 const heroLine2 = ["que", "resisten", "donde", "otros", "ceden."];
@@ -35,9 +35,6 @@ const marqueeClientes = [...clientes, ...clientes];
       </p>
       <div class="hero-actions">
         <a href="#productos" class="btn btn-primary" style="text-decoration:none">Ver catálogo de productos</a>
-        <a href={whatsappLink} target="_blank" rel="noopener" class="btn btn-ghost" style="text-decoration:none">
-          Hablar por WhatsApp
-        </a>
       </div>
     </div>
     <BlueprintFrame class="hero-visual">
@@ -167,9 +164,46 @@ const marqueeClientes = [...clientes, ...clientes];
     </div>
   </section>
 
+  <section class="section">
+    <span class="section-eyebrow">05 · Lo que dicen nuestros clientes</span>
+    <hr class="section-rule" style="margin-bottom:var(--leading)" />
+    <div class="review-grid">
+      {reviews.map((review) => (
+        <BlueprintFrame class="review-card">
+          <div class="review-stars" aria-label={`${review.rating} de 5 estrellas`}>
+            {Array.from({ length: 5 }).map((_, i) => (
+              <svg
+                viewBox="0 0 24 24"
+                width="16"
+                height="16"
+                fill={i < review.rating ? "currentColor" : "none"}
+                stroke="currentColor"
+                stroke-width="1.5"
+                class={i < review.rating ? "star-filled" : "star-empty"}
+              >
+                <path d="M12 2.5l2.77 5.61 6.19.9-4.48 4.37 1.06 6.17L12 16.6l-5.54 2.95 1.06-6.17-4.48-4.37 6.19-.9L12 2.5z"></path>
+              </svg>
+            ))}
+          </div>
+          <p class="review-text">"{review.text}"</p>
+          <span class="review-author">{review.name}</span>
+        </BlueprintFrame>
+      ))}
+    </div>
+    <a
+      href={googleReviewsUrl}
+      target="_blank"
+      rel="noopener"
+      class="btn btn-ghost"
+      style="margin-top:var(--leading);text-decoration:none"
+    >
+      Ver todas las reseñas en Google
+    </a>
+  </section>
+
   <section id="contacto" class="contact">
     <div class="contact-hero">
-      <span class="section-eyebrow">05 · Contacto</span>
+      <span class="section-eyebrow">06 · Contacto</span>
       <hr class="section-rule" />
       <h2 class="section-heading">¿Necesita algo a medida?</h2>
       <p>

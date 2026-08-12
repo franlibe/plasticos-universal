@@ -543,6 +543,43 @@ a:hover {
   text-transform: uppercase;
   color: color-mix(in srgb, var(--color-text) 70%, transparent);
 }
+/* — google reviews — */
+.review-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+  margin-top: var(--leading);
+}
+.review-card {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.review-stars {
+  display: flex;
+  gap: 2px;
+}
+.star-filled {
+  color: var(--color-accent-700);
+}
+.star-empty {
+  color: color-mix(in srgb, var(--color-text) 30%, transparent);
+}
+.review-text {
+  font-size: 15px;
+  line-height: 1.6;
+  color: color-mix(in srgb, var(--color-text) 85%, transparent);
+  margin: 0;
+  flex: 1;
+}
+.review-author {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--color-text);
+}
+
 /* — clients marquee — */
 .marquee-viewport {
   position: relative;
@@ -597,6 +634,16 @@ a:hover {
   color: color-mix(in srgb, var(--color-bg) 88%, transparent);
   margin: calc(var(--leading) - 8px) 0 0;
   max-width: var(--measure);
+}
+.contact-hero .btn-primary {
+  background: var(--color-accent-700);
+  border-color: var(--color-accent-700);
+}
+.contact-hero .btn-primary:hover {
+  background: var(--color-accent-800);
+}
+.contact-hero .btn-primary:active {
+  background: var(--color-accent-900);
 }
 .contact-footer {
   padding: 0 var(--edge) calc(3 * var(--leading));

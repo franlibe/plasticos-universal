@@ -23,6 +23,27 @@ export const stats: Stat[] = [
   { value: "40+", label: "Años de experiencia" },
 ];
 
+export const googleReviewsUrl = "https://share.google/GUogzdBuPjsksaDG8";
+
+export interface Review {
+  name: string;
+  rating: number;
+  text: string;
+}
+
+export const reviews: Review[] = [
+  {
+    name: "Walter Loustau",
+    rating: 5,
+    text: "100 puntos. Ya más de 10 clientes míos han comprado planta de desechos y nunca un problema en zona San Vicente. Buena atención y siempre cumpliendo con lo pactado.",
+  },
+  {
+    name: "Daniel Gorosito",
+    rating: 5,
+    text: "Les compré una planta domiciliaria, excelente producto y atención. Recibido en tiempo y forma, funciona perfecto, una salvada para los que vivimos en las sierras sin cloacas.",
+  },
+];
+
 export interface ProductSpec {
   label: string;
   value: string;
