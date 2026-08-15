@@ -6,8 +6,7 @@ export const site = {
   phoneDisplay: "54 (3472) 449069",
   phoneHref: "tel:+543472449069",
   address: "Ruta Nacional N.º 9 Km 464, Leones, Córdoba (CP 2594), Argentina.",
-  mapEmbed:
-    "https://www.google.com/maps?q=Ruta+Nacional+9+Km+464,+Leones,+C%C3%B3rdoba,+Argentina&output=embed",
+  mapEmbed: "https://www.google.com/maps?q=-32.651020,-62.296023&z=16&output=embed",
 };
 
 export const whatsappLink = `https://api.whatsapp.com/send?phone=${site.whatsappNumber}`;

@@ -299,7 +299,8 @@ a:hover {
 }
 .product-photo {
   width: 100%;
-  aspect-ratio: 4 / 3;
+  height: 220px;
+  flex-shrink: 0;
   background: var(--color-surface);
   display: flex;
   align-items: center;
@@ -693,6 +694,18 @@ a:hover {
   background: var(--color-accent-900);
   color: var(--color-bg);
   padding: calc(2.5 * var(--leading)) var(--edge);
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: var(--leading) clamp(24px, 5vw, 64px);
+  align-items: center;
+}
+.contact-hero-media .blueprint {
+  border-color: color-mix(in srgb, var(--color-bg) 25%, transparent);
+}
+.contact-hero-media img {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 .contact-hero .section-eyebrow {
   color: color-mix(in srgb, var(--color-bg) 85%, transparent);
@@ -746,8 +759,13 @@ a:hover {
   padding-top: calc(2 * var(--leading));
   border-top: 1px solid var(--color-divider);
 }
+@media (min-width: 761px) {
+  .contact-details > div:first-child {
+    padding-left: clamp(24px, 11vw, 250px);
+  }
+}
 .contact-details p {
-  font-size: 17px;
+  font-size: 19px;
   line-height: 1.6;
   color: color-mix(in srgb, var(--color-text) 78%, transparent);
   margin: 0;
@@ -764,6 +782,11 @@ a:hover {
 .map-frame {
   position: relative;
   overflow: visible;
+}
+@media (min-width: 761px) {
+  .map-frame {
+    max-width: 620px;
+  }
 }
 .map-frame .blueprint {
   overflow: hidden;
@@ -842,7 +865,8 @@ a:hover {
     display: none !important;
   }
   .hero,
-  .split-grid {
+  .split-grid,
+  .contact-hero {
     grid-template-columns: 1fr !important;
   }
   .stats-grid {

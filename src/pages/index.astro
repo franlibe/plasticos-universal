@@ -203,21 +203,28 @@ const marqueeClientes = [...clientes, ...clientes];
 
   <section id="contacto" class="contact">
     <div class="contact-hero">
-      <span class="section-eyebrow">06 · Contacto</span>
-      <hr class="section-rule" />
-      <h2 class="section-heading">¿Necesita algo a medida?</h2>
-      <p>
-        Cada tanque, autoparte o agroparte se calcula y desarrolla a medida del proyecto:
-        acompañamos al cliente desde el diseño y el cálculo estructural hasta la fabricación y la
-        puesta en servicio, con un control técnico riguroso en cada etapa. Si tiene una necesidad
-        no cubierta por el mercado, lo asesoramos, diseñamos y construimos la solución.
-      </p>
-      <div class="contact-actions">
-        <a href={whatsappLink} target="_blank" rel="noopener" class="btn btn-primary" style="text-decoration:none">
-          Escribir por WhatsApp
-        </a>
-        <a href={`mailto:${site.email}`} class="btn btn-ghost" style="text-decoration:none">{site.email}</a>
-        <a href={site.phoneHref} class="phone">{site.phoneDisplay}</a>
+      <div class="contact-hero-media">
+        <BlueprintFrame>
+          <img src="/uploads/img-seccion-contacto.png" alt="Plásticos Universal" />
+        </BlueprintFrame>
+      </div>
+      <div class="contact-hero-content">
+        <span class="section-eyebrow">06 · Contacto</span>
+        <hr class="section-rule" />
+        <h2 class="section-heading">¿Necesita algo a medida?</h2>
+        <p>
+          Cada tanque, autoparte o agroparte se calcula y desarrolla a medida del proyecto:
+          acompañamos al cliente desde el diseño y el cálculo estructural hasta la fabricación y la
+          puesta en servicio, con un control técnico riguroso en cada etapa. Si tiene una necesidad
+          no cubierta por el mercado, lo asesoramos, diseñamos y construimos la solución.
+        </p>
+        <div class="contact-actions">
+          <a href={whatsappLink} target="_blank" rel="noopener" class="btn btn-primary" style="text-decoration:none">
+            Escribir por WhatsApp
+          </a>
+          <a href={`mailto:${site.email}`} class="btn btn-ghost" style="text-decoration:none">{site.email}</a>
+          <a href={site.phoneHref} class="phone">{site.phoneDisplay}</a>
+        </div>
       </div>
     </div>
 
