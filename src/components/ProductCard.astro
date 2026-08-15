@@ -29,10 +29,12 @@ const gallery = details?.gallery ?? [];
       )
     }
   </div>
-  <h3 class="product-name">{product.name}</h3>
-  <p class="product-blurb">{product.blurb}</p>
+  <div class="product-card-body">
+    <h3 class="product-name">{product.name}</h3>
+    <p class="product-blurb">{product.blurb}</p>
+  </div>
   <div class="product-actions">
-    <a href="#contacto" class="btn btn-ghost">Consultar</a>
+    <a href="#contacto" class="btn btn-primary" style="text-decoration:none">Consultar</a>
     {details && (
       <button type="button" class="btn btn-secondary" data-open-dialog={dialogId}>
         Ver más
